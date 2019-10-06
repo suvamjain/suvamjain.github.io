@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+
+        html {height: 100%;}
+
+        body {margin:0; height: 100%;}
+        
+        .icon-bar {
+            width: 5%;
+            height: 100%;
+            padding-top: 8%;
+            position: absolute;
+            left:0;
+            top: 0;
+            overflow: hidden; 
+            margin-bottom: -5000px; /* any large number will do */
+            padding-bottom: 5000px; 
+            background-color: #fff;
+            -moz-box-shadow:    -3px 0 5px 0 #555;
+            -webkit-box-shadow: -3px 0 5px 0 #555;
+            box-shadow:         -3.2px 0 5px 0 #555;
+        }
+
+        .icon-bar a {
+            display: block;
+            text-align: center;
+            padding: 16px;
+            transition: all 0.3s ease;
+            color: #61cac0;
+            font-size: 36px;
+        }
+
+        .active {
+            border-right: 3px solid #3ebcb3;
+        }
+
+        .menu {
+            width: 24px;
+            height: 24px;
+            margin: auto; 
+            text-align: center;
+            background-color: #000;
+        }
+        
+        #dashboard{
+            background-color: #61cac0;
+            -webkit-mask: url(icons/thumbnails.svg);
+            mask: url(icons/thumbnails.svg);
+        }
+        
+        #search{
+            -webkit-mask: url(icons/search.svg);
+            mask: url(icons/search.svg);
+        }
+
+        #home{
+            width: 28px;
+            height: 28px;
+            -webkit-mask: url(icons/home.svg);
+            mask: url(icons/home.svg);
+        }
+
+        .up-bar {
+            height: 70px;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            -moz-box-shadow:    -3px 0 5px 0 #f2f2f2;
+            -webkit-box-shadow: -3px 0 5px 0 #555;
+            box-shadow:          0 2px 4px -3px grey;
+        }
+
+        #logo{
+            height: 26px;
+            margin-left: 175px;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #bell{
+            height: 28px;
+            width: 28px;
+            -webkit-mask: url(icons/bell.svg);
+            mask: url(icons/bell.svg);
+        }
+
+        .icon-wrapper{
+            position:relative;
+            float: right;
+            top: 50%;
+            right: 250px;
+            transform: translateY(-50%);
+        }
+
+        .badge {
+            position: absolute;
+            margin-left: 55%;
+            margin-top: -125%;
+            display:inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius:50%;
+            padding: 2px 2px;
+            font-size:12px;
+            line-height:20px;
+            color:#fff;
+            text-align:center;
+            background-color:#f25c6a;
+        }
+
+        .profile{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            position:relative;
+            float: right;
+            top: 50%;
+            right: 150px;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: #fff;
+            line-height: 40px;
+            text-align: center;
+            background: #b3e77f;
+        }
+
+        .card {
+            /* border: 1px solid #d3d3d3; */
+            /* border-radius: .25rem; */
+            background: #fdfdfd;
+            padding: 45px 35px 45px 35px; 
+        }
+
+        .card:hover{ 
+            box-shadow: 1px 2px 10px rgba(0,0,0,0.15);
+            transition: box-shadow .2s ease-in-out;
+        }
+        
+        .card:hover #head h4{
+            color: #3ebcb3;
+        }
+
+        .bg-img img, #head{
+            font-family: 'Courier';
+            display: inline-block;
+            vertical-align: middle;
+
+        }
+
+        .bg-img #head {
+            margin-left: 20px;
+        }
+
+        .content {
+            /* padding: 15px; */
+            margin-top: 25px;
+            color: #b7b8b8;
+            font-size: 15px;
+            font-family: 'serif';
+        }
+
+        button {
+            background-color: transparent;
+            border: 1px solid #61cac0;
+            color: #3ebcb3;
+            padding: .5rem 1.5rem;
+            cursor: pointer;
+            border-radius: .25rem;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-row-gap: 75px;
+            grid-column-gap: 40px;
+            margin-bottom: 100px;
+        }
+
+        .site-footer {
+            /* background-color: #838383; */
+            text-align: center;
+            margin: 10px 0;
+            padding: 10px 0;
+        }
+
+        #social-wrapper {
+            text-align: center;
+        }
+
+        .social-wrapper {
+            text-align: center;
+        }
+
+        .social-wrapper ul li {
+            display: inline;
+            margin: 0 5px;
+        }
+
+        .twitter-icon,
+        .facebook-icon,
+        .instagram-icon,
+        .linkedin-icon {
+            margin-top: .625em;
+            width: 30px;
+            height: 30px;
+            fill: #555;
+            margin: 20px;
+        }
+
+        .footer-nav p {
+            margin-top: -10px;
+            font-size: 16px;
+            text-align: center;
+            color: #81858e;
+            font-family: 'Roboto';
+        }
+        
+    </style>
+
+    <body>
+        <div class="up-bar">
+            <img id="logo" src="icons/logo.png"/>
+            <div class="icon-wrapper">
+                <div id = "bell" class="menu"></div>
+                <span class="badge">699</span>
+            </div>
+            <div class="profile">AB</div>
+        </div>   
+
+        <div class="icon-bar">
+            <a class = "active" href="#"><div id="dashboard" class="menu"></div></a> 
+            <a href="#"><div id="search" class="menu"></div></a> 
+            <a href="#"><div id="home" class="menu"></div></a> 
+        </div> 
+        
+        <div style="margin: 50px 150px 0 175px;">
+            
+            <p style="font-family: Cochin; font-size: 40px;">Content Store</p>
+
+            <div style="background-color: #f9fbfb; padding: 20px 32% 20px 20px;">
+                <p style="color: #61cac0; font-size: 18px; font-family: Roboto">Got bulk orders or almost similar orders? Fill the order brief in an excel sheet</p>
+                <p style="color: #a6a6a6; font-size: 15px; font-family:  Helvetica;">
+                    If you're wondering about an easy way to place orders in large numbers, we provide a way customized just for that. Download our excel 
+                    sheet, and fill the order brief in the prescribed format and submit. In case you need any help, <u>we are just a click away to
+                        assist you in placing your order
+                    </u>
+                </p>
+                
+                <button>Order via Excel Sheet</button>
+            </div>
+
+            <br><br><br><br>
+
+            <div class="grid-container">
+                <div class="card">
+                    <div class="bg-img">
+                        <img src="icons/ic.svg" style="width: 60px;">
+                        <div id="head">
+                            <h4>Blog/Article</h4>
+                            <p style="line-height: 0px;">from &#8377;500</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p> Typically 450-400 words, an e-book is perfect for your target audience ranging from prospective customers to users</p> <button>Order</button> 
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="bg-img">
+                        <img src="icons/ic.svg" style="width: 60px;">
+                        <div id="head">
+                            <h4>Newsletter/E-mailer</h4>
+                            <p style="line-height: 0px;">from &#8377;1000</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p> Typically 450-400 words, an e-book is perfect for your target audience ranging from prospective customers to users</p> <button>Order</button> 
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="bg-img">
+                        <img src="icons/ic.svg" style="width: 60px;">
+                        <div id="head">
+                            <h4>Whitepaper</h4>
+                            <p style="line-height: 0px;">from &#8377;2000</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p> Typically 450-400 words, an e-book is perfect for your target audience ranging from prospective customers to users</p> <button>Order</button> 
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="bg-img">
+                        <img src="icons/ic.svg" style="width: 60px;">
+                        <div id="head">
+                            <h4>e-book</h4>
+                            <p style="line-height: 0px;">from &#8377;1000</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p> Typically 450-400 words, an e-book is perfect for your target audience ranging from prospective customers to users</p> <button>Order</button> 
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="bg-img">
+                        <img src="icons/ic.svg" style="width: 60px;">
+                        <div id="head">
+                            <h4>Report/Guide</h4>
+                            <p style="line-height: 0px;">from &#8377;1000</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p> Typically 450-400 words, an e-book is perfect for your target audience ranging from prospective customers to users</p> <button>Order</button> 
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="bg-img">
+                        <img src="icons/ic.svg" style="width: 60px;">
+                        <div id="head">
+                            <h4>Product Description</h4>
+                            <p style="line-height: 0px;">from &#8377;500</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p> Typically 450-400 words, an e-book is perfect for your target audience ranging from prospective customers to users</p> <button>Order</button> 
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="bg-img">
+                        <img src="icons/ic.svg" style="width: 60px;">
+                        <div id="head">
+                            <h4>Website Content</h4>
+                            <p style="line-height: 0px;">from &#8377;1000</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p> Typically 450-400 words, an e-book is perfect for your target audience ranging from prospective customers to users</p> <button>Order</button> 
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="bg-img">
+                        <img src="icons/ic.svg" style="width: 60px;">
+                        <div id="head">
+                            <h4>Video Script</h4>
+                            <p style="line-height: 0px;">from &#8377;500</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p> Typically 450-400 words, an e-book is perfect for your target audience ranging from prospective customers to users</p> <button>Order</button> 
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="bg-img">
+                        <img src="icons/ic.svg" style="width: 60px;">
+                        <div id="head">
+                            <h4>Company Profile</h4>
+                            <p style="line-height: 0px;">from &#8377;2000</p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p> Typically 450-400 words, an e-book is perfect for your target audience ranging from prospective customers to users</p> <button>Order</button> 
+                    </div>
+                </div>
+                <div class="card">
+                        <div class="bg-img">
+                            <img src="icons/ic.svg" style="width: 60px;">
+                            <div id="head">
+                                <h4>Press Release</h4>
+                                <p style="line-height: 0px;">from &#8377;2000</p>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <p> Typically 450-400 words, an e-book is perfect for your target audience ranging from prospective customers to users</p> <button>Order</button> 
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </body>
+    <footer id="colophon" class="site-footer">
+        <div class="social-wrapper">
+            <ul>
+            <li>
+                <a href="" >
+                <img src="icons/twitter.svg" alt="Twitter Logo" class="twitter-icon" style="fill: 555;"></a>
+            </li>
+            <li>
+                <a href="" >
+                <img src="icons/instagram.svg" alt="Instagram Logo" class="instagram-icon"></a>
+            </li>
+            <li>
+                <a href="" >
+                <img src="icons/linkedin.svg" alt="Linkedin Logo" class="linkedin-icon"></a>
+            </li>
+            <li>
+                <a href="" >
+                <img src="icons/facebook.svg" alt="Facebook Logo" class="facebook-icon"></a>
+            </li>
+            </ul>
+        </div>
+        
+        <nav class="footer-nav">
+            <p>Copyright @ 2019 White Panda Media Pvt. Ltd. <br>All rights reserved</p>
+            <br>
+            <p>
+                <u>Privacy Policy</u> &nbsp;| &nbsp;
+                <u>Terms of Service </u> &nbsp;| &nbsp;
+                <u>Service Agreement</u> &nbsp;| &nbsp;
+                <u>Contact us</u>
+            </p>
+        </nav>
+        <br>
+    </footer>
+</html> 
+
